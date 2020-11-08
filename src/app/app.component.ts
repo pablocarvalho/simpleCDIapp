@@ -7,16 +7,16 @@ import { Chart } from 'chart.js';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    @ViewChild("meuCanvas", { static: true } ) elemento: ElementRef;
-    
-    ngOnInit(){
-        new Chart(this.elemento.nativeElement,{
+    @ViewChild('meuCanvas', { static: true } ) elemento: ElementRef;
+
+    ngOnInit(): void{
+        const chart = new Chart(this.elemento.nativeElement, {
             type: 'line',
-            data:{
-                labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
-                datasets:[
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                datasets: [
                     {
-                        data:[85,73,86,81,84,86,94,60,62,65,41,58]
+                        data: [85, 73, 86, 81, 84, 86, 94, 60, 62, 65, 41, 58]
                     }
                 ]
             }
@@ -24,29 +24,29 @@ export class AppComponent implements OnInit {
     });
   }
 
-  shuffle(array,maxValue) {    
+  shuffle(array: Array<number>, maxValue: number ): Array<number> {
 
-    for(var i = 0;i<array.length;i++) { 
+    for (let i = 0; i < array.length; i++) {
         array[i] = Math.floor(Math.random() * (maxValue + 1));
      }
-    
+
     return array;
   }
-  
-  
 
-  onClickMe() {
-    // const target = evt.target    
-    var a:number[] = new Array(12);
-    a = this.shuffle(a,100);
 
-    new Chart(this.elemento.nativeElement,{
+
+  onClickMe(): void {
+    // const target = evt.target
+    let a: number[] = new Array(12);
+    a = this.shuffle(a, 100);
+
+    const chart = new Chart(this.elemento.nativeElement, {
         type: 'line',
-        data:{
-            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
-            datasets:[
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            datasets: [
                 {
-                    data:a
+                    data: a
                 }
             ]
         }
@@ -54,15 +54,15 @@ export class AppComponent implements OnInit {
 });
   }
 
-  resetChart() {
-    // const target = evt.target        
-    new Chart(this.elemento.nativeElement,{
+  resetChart(): void {
+    // const target = evt.target
+    const chart = new Chart(this.elemento.nativeElement, {
         type: 'line',
-        data:{
-            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
-            datasets:[
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            datasets: [
                 {
-                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 }
             ]
         }
