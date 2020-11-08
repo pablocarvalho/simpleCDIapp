@@ -23,4 +23,20 @@ export class AppComponent implements OnInit {
 
     });
   }
+
+  onClickMe() {
+    // const target = evt.target    
+    new Chart(this.elemento.nativeElement,{
+        type: 'line',
+        data:{
+            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
+            datasets:[
+                {
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
+                }
+            ]
+        }
+
+});
+  }
 }
