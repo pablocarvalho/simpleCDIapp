@@ -24,8 +24,38 @@ export class AppComponent implements OnInit {
     });
   }
 
+  shuffle(array,maxValue) {    
+
+    for(var i = 0;i<array.length;i++) { 
+        array[i] = Math.floor(Math.random() * (maxValue + 1));
+     }
+    
+    return array;
+  }
+  
+  
+
   onClickMe() {
     // const target = evt.target    
+    var a:number[] = new Array(12);
+    a = this.shuffle(a,100);
+
+    new Chart(this.elemento.nativeElement,{
+        type: 'line',
+        data:{
+            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
+            datasets:[
+                {
+                    data:a
+                }
+            ]
+        }
+
+});
+  }
+
+  resetChart() {
+    // const target = evt.target        
     new Chart(this.elemento.nativeElement,{
         type: 'line',
         data:{
