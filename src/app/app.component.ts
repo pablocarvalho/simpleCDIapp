@@ -7,6 +7,17 @@ import { Chart } from 'chart.js';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+    minDate: Date;
+    maxDate: Date;
+    constructor() {
+        // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
+        const currentYear = new Date().getFullYear();
+        this.minDate = new Date(currentYear - 20, 0, 1);
+        this.maxDate = new Date(currentYear + 1, 11, 31);
+    }
+
+
     @ViewChild('meuCanvas', { static: true } ) elemento: ElementRef;
 
     ngOnInit(): void{
@@ -69,4 +80,21 @@ export class AppComponent implements OnInit {
 
 });
   }
+
+    inputStartEvent(event: any): void{
+        console.log(event.value);
+    }
+    changeStartEvent(event: any): void{
+        console.log(event.value);
+    }
+
+    inputEndEvent(event: any): void{
+        console.log(event.value);
+    }
+    changeEndEvent(event: any): void{
+        console.log(event.value);
+    }
+
 }
+
+
