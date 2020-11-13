@@ -15,19 +15,18 @@ export class AppComponent implements OnInit {
     maxDate: Date;
     startDate: Date;
     endDate: Date;
+    chart: Chart;
+
+    @ViewChild('meuCanvas', { static: true } ) elemento: ElementRef;
 
     constructor(private dataService: DataService) {
-        // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
         const currentYear = new Date().getFullYear();
         this.minDate = new Date(currentYear - 20, 0, 1);
         this.maxDate = new Date(currentYear + 1, 11, 31);
     }
 
-
-    @ViewChild('meuCanvas', { static: true } ) elemento: ElementRef;
-
     ngOnInit(): void{
-        const chart = new Chart(this.elemento.nativeElement, {
+        this.chart = new Chart(this.elemento.nativeElement, {
             type: 'line',
             data: {
                 labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -50,19 +49,11 @@ export class AppComponent implements OnInit {
         return e.unitPrice;
      });
 
+    this.chart.data.datasets[0].data = grdata;
+    this.chart.data.labels = grlabels;
 
-    const chart = new Chart(this.elemento.nativeElement, {
-        type: 'line',
-        data: {
-            labels: grlabels,
-            datasets: [
-                {
-                    data: grdata
-                }
-            ]
-        }
+    this.chart.update();
 
-});
   }
 
     inputStartEvent(event: any): void{
@@ -108,16 +99,11 @@ export class AppComponent implements OnInit {
 
         this.dataService.query(request).subscribe(
             data => {
-                console.log(data);
                 this.plotData(data);
             },
             () =>  {
                 return console.log('answer received');
             });
-
-        console.log(request);
-
-        parseFloat(cdbValue);
 
     }
 
