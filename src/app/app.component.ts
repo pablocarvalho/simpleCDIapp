@@ -1,5 +1,6 @@
 import { query } from '@angular/animations';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 import { Chart } from 'chart.js';
 import { stringify } from 'querystring';
 import { DataService } from './data.service';
@@ -99,7 +100,14 @@ export class AppComponent implements OnInit {
 
         this.dataService.query(request).subscribe(
             data => {
-                this.plotData(data);
+                if ( typeof data === 'undefined' || data.length === 0 ){
+                    console.log('empty return');
+                    document.getElementById('valueLabel').innerHTML = '0.00';
+                }else{
+                    this.plotData(data);
+                    const value: number = data[data.length - 1].unitPrice;
+                    document.getElementById('valueLabel').innerHTML = value.toFixed(2);
+                }
             },
             () =>  {
                 return console.log('answer received');

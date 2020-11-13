@@ -1,31 +1,36 @@
-<div> 
-    <canvas #meuCanvas></canvas>    
-</div>
-<div class="button-row">
-
-    <mat-form-field class="data-inicial" appearance="fill">
-        <mat-label>Data Inicial</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" (dateInput)="inputStartEvent($event)" (dateChange)="changeStartEvent($event)" [matDatepicker]="picker1">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="data-final" appearance="fill">
-        <mat-label>Data Final</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" (dateInput)="inputEndEvent($event)" (dateChange)="changeEndEvent($event)" [matDatepicker]="picker2">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field >
-        <mat-label>Percentual CDB</mat-label>        
-        <mat-hint align="end">Apenas números</mat-hint>
-        <input matInput type="decimal" class="example-right-align" name="cdb" #cdbinput>
-        <mat-error *ngIf="isNumeric('cdb')">Utilize o formato 0.00</mat-error>
-        <!-- <span matPrefix>$&nbsp;</span> -->
-        <!-- <span matSuffix>.00</span> -->
-    </mat-form-field>
+<body>
+    <div> 
+        <canvas #meuCanvas></canvas>    
+    </div>
+    <div class="button-row">
     
-      <button mat-stroked-button color="Warn" (click)="sendRequest(cdbinput.value)">Calcular</button>
-      
-</div>
+        <mat-form-field class="data-inicial" appearance="fill">
+            <mat-label>Data Inicial</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" (dateInput)="inputStartEvent($event)" (dateChange)="changeStartEvent($event)" [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field class="data-final" appearance="fill">
+            <mat-label>Data Final</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" (dateInput)="inputEndEvent($event)" (dateChange)="changeEndEvent($event)" [matDatepicker]="picker2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field >
+            <mat-label>Percentual CDB</mat-label>        
+            <mat-hint align="end">Apenas números</mat-hint>
+            <input matInput type="decimal" class="example-right-align" name="cdb" #cdbinput>
+            <mat-error *ngIf="isNumeric('cdb')">Utilize o formato 0.00</mat-error>
+            <!-- <span matPrefix>$&nbsp;</span> -->
+            <!-- <span matSuffix>.00</span> -->
+        </mat-form-field>
+        
+          <button mat-stroked-button color="Warn" (click)="sendRequest(cdbinput.value)">Calcular</button>
+    
+          <Label> valor: </Label>
+          <Label id="valueLabel"> 0.00 </Label>
+          
+    </div>
+</body>
