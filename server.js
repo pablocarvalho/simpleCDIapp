@@ -6,8 +6,10 @@ app.use(express.static('/dist'));
 
 app.listen(process.env.PORT || 4200);
 
-app.get('/*',function(req,res){
-    res.sendFile('/dist/index.html');
+app.use(express.static(__dirname + '/dist/index.html'));
+
+app.get('/*',function(req,res){    
+    res.sendFile(path.join(__dirname+'/dist/index.html'));
 })
 
 console.log('Console listening!');
